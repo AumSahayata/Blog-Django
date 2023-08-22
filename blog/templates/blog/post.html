@@ -1,0 +1,115 @@
+{% extends "blog/layout.html" %}
+
+{% block title %}{{post.title}}{% endblock %}
+
+{% block css %}
+
+<style>
+    .box{
+        margin-top: 2%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        width: 850px;
+        height: 450px;
+        border-radius: 50px;
+        border: solid 3px #65cca9;
+    }
+    input{
+        padding: 5px;
+        width: 700px;
+        height: 50px;
+        border: none;
+        margin: 10px;
+        border-radius: 20px;
+    }
+    .submit{
+        background-color: white;
+        font-size: 30px;
+        font-family: sans-serif;
+        margin-top: 15px;
+        outline: solid 2px #65bbcc;
+        display: inline;
+        width: 200px;
+    }
+    .submit:hover{
+        background-color:#65bbcc;
+    }
+    .type{
+        font-size: 20px;
+        outline: solid 2px #65cca9;
+        font-family: sans-serif;
+    }
+    .type:hover{
+        border: solid 4px #65cca9;
+    }
+    .type:focus {
+        border: solid 4px #65cca9;
+        outline: none;
+    }
+    h2{
+        font-family: sans-serif;
+        font-size: 40px;
+    }
+    .text-area{
+        border-radius: 20px;
+        outline: none;
+        border: none;
+        border-collapse: collapse;
+    }
+    .back{
+        background-color: white;
+        font-size: 30px;
+        font-family: sans-serif;
+        margin-top: 15px;
+        outline: solid 2px #65bbcc;
+        display: inline;
+        width: 200px;
+        padding: 5px;
+        height: 50px;
+        border: none;
+        margin: 20px;
+        border-radius: 20px;
+        margin-right: 200px;
+    }
+    .back:hover{
+        background-color:#65bbcc;
+    }
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<div style="display: flex; flex-direction: row; justify-content: start; align-items: center;">
+    <div style="width: 400px; border: 2px solid black; margin-right: 100px;">
+        <h4 style="text-align: center;">Comments</h4>
+        <ul style=" list-style-type: none;">
+            {% for comment in comments %}
+            <li style="border-bottom: 1px solid black; margin: 5px;">{{comment.comment}} &nbsp;&nbsp; &nbsp;  <sub style="color: gray; font-style: italic;">{{comment.username}}, {{comment.date}}</sub></li>
+            {% empty %}
+            <li>No Comments</li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div class="box">
+        <h2>{{post.title}}</h2>
+        <div style="text-align: center; padding: 30px; word-wrap:break-word;">
+            {{post.post_body}}
+        </div>
+        by {{post.username}}, {{post.date}}
+    </div>
+</div>
+<div style="display: flex; justify-content: end; margin-top: 100px; margin-right: 100px;">
+    <button type="button" class="back" onclick="location.href='/home'">Back</button>
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <input type="text" name="comment" placeholder="Comment" class="type" maxlength="100">
+        <input type="submit" value="Submit" class="submit">
+    </form>
+</div>
+
+{% endblock %}

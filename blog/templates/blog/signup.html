@@ -1,0 +1,96 @@
+{% extends "blog/layout.html" %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block css %}
+
+<style>
+    .box{
+        margin-top: 5%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        width: 350px;
+        height: 550px;
+        border-radius: 50px;
+        border: solid 3px #65cca9;
+    }
+    input{
+        padding: 2px;
+        width: 300px;
+        height: 50px;
+        border: none;
+        margin: 10px;
+        border-radius: 20px;
+    }
+    .submit{
+        background-color: white;
+        font-size: 30px;
+        font-family: sans-serif;
+        margin-top: 15px;
+        outline: solid 2px #65bbcc;
+    }
+    .submit:hover{
+        background-color:#65bbcc;
+    }
+    .type{
+        font-size: 20px;
+        outline: solid 2px #65cca9;
+        font-family: sans-serif;
+    }
+    .type:hover{
+        border: solid 4px #65cca9;
+    }
+    .type:focus {
+        border: solid 4px #65cca9;
+        outline: none;
+    }
+    h2{
+        font-family: sans-serif;
+        font-size: 40px;
+    }
+    a{
+        color: #65cca9;
+        font-family: sans-serif;
+        font-size: 15px;
+        
+    }
+    a:hover{
+        font-weight: bold;
+    }
+    a:visited{
+        color: #65cca9;
+    }
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <div class="box">
+        <h2>Sign Up</h2>
+        <div style="text-align: center;">
+
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ message }}
+
+                <input class="type" type="text" name="username" placeholder="Username" autofocus required>
+                <br>
+                <input class="type" type="email" name="email" placeholder="Email" required>
+                <br>
+                <input class="type" type="password" name="password" placeholder="Password" required>
+                <br>
+                <input class="type" type="password" name="conpassword" placeholder="Confirm Password" required>
+                <br>
+                <input class="submit" type="submit" value="Sign up">
+            </form>
+
+            <a href="{% url 'login' %}">Already have an account?</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

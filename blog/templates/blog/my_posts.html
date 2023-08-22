@@ -1,0 +1,81 @@
+{% extends "blog/layout.html" %}
+
+{% block title %}account{% endblock %}
+
+{% block css %}
+
+<style>
+    body{
+        font-family: sans-serif;
+    }
+    h1{
+        text-align: center;
+    } 
+    ul{
+        list-style-type: none;
+    }
+    li{
+        padding: 10px;
+        font-size: 40px;
+        border: solid 1px black;
+        border-radius: 5px;
+        margin: 10px;
+    }
+    .delete{
+        background-color: white;
+        font-size: 20px;
+        font-family: sans-serif;
+        margin-top: 15px;
+        outline: solid 2px rgb(255, 77, 77);
+        display: inline;
+        width: 100px;
+        padding: 5px;
+        height: 40px;
+        border: none;
+        margin: 10px;
+        border-radius: 20px;
+    }
+    .delete:hover{
+        background-color: rgb(255, 77, 77);
+    }
+    .back{
+        background-color: white;
+        font-size: 20px;
+        font-family: sans-serif;
+        margin-top: 15px;
+        outline: solid 2px #65bbcc;
+        display: inline;
+        width: 100px;
+        padding: 5px;
+        height: 40px;
+        border: none;
+        margin: 10px;
+        border-radius: 20px;
+    }
+    .back:hover{
+        background-color:#65bbcc;
+    }
+</style>
+
+{% endblock %}
+
+
+{% block body %}
+
+<h1>My Posts</h1>
+<button type="button" class="back" onclick="location.href='/home'">Home</button>
+
+<ul>
+    {% for post in posts %}
+    <li style="display: flex;justify-content: space-between;">{{post.title}}
+        <section>
+            <button type="button" class="back" onclick="location.href='/edit_post/{{post.id}}'">Edit</button><button type="button" class="delete" onclick="location.href='/delete_post/{{post.id}}'">Delete</button>
+        </section>
+        </li>
+        
+    {% empty %}
+    <li style="display: flex;justify-content: space-between;">No posts yet? Create one now <button type="button" class="back" onclick="location.href='/new_post'">New Post</button></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

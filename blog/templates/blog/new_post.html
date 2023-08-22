@@ -1,0 +1,105 @@
+{% extends "blog/layout.html" %}
+
+{% block title %}New Post{% endblock %}
+
+{% block css %}
+
+<style>
+    .box{
+        margin-top: 2%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        width: 850px;
+        height: 650px;
+        border-radius: 50px;
+        border: solid 3px #65cca9;
+    }
+    input{
+        padding: 5px;
+        width: 700px;
+        height: 50px;
+        border: none;
+        margin: 10px;
+        border-radius: 20px;
+    }
+    .submit{
+        background-color: white;
+        font-size: 30px;
+        font-family: sans-serif;
+        margin-top: 15px;
+        outline: solid 2px #65bbcc;
+        display: inline;
+        width: 200px;
+    }
+    .submit:hover{
+        background-color:#65bbcc;
+    }
+    .type{
+        font-size: 20px;
+        outline: solid 2px #65cca9;
+        font-family: sans-serif;
+    }
+    .type:hover{
+        border: solid 4px #65cca9;
+    }
+    .type:focus {
+        border: solid 4px #65cca9;
+        outline: none;
+    }
+    h2{
+        font-family: sans-serif;
+        font-size: 40px;
+    }
+    .text-area{
+        border-radius: 20px;
+        outline: none;
+        border: none;
+        border-collapse: collapse;
+    }
+    .back{
+        background-color: white;
+        font-size: 30px;
+        font-family: sans-serif;
+        margin-top: 15px;
+        outline: solid 2px #65bbcc;
+        display: inline;
+        width: 200px;
+        padding: 5px;
+        height: 50px;
+        border: none;
+        margin: 10px;
+        border-radius: 20px;
+    }
+    .back:hover{
+        background-color:#65bbcc;
+    }
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <div class="box">
+        <h2>Create new Post</h2>
+        <div style="text-align: center;">
+
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ message }}
+
+                <input class="type" type="text" name="title" placeholder="Title" maxlength="100" autofocus required>
+                <br>
+                <textarea name="body" class="type text-are" cols="65" rows="15" placeholder="Blog body" maxlength="800" required></textarea>
+                <br>
+                <input class="submit" type="submit" value="Post">
+                <input class="submit" type="reset" value="Reset">
+                <button type="button" class="back" onclick="location.href='/home'">Back</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
