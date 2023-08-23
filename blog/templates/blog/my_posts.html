@@ -55,6 +55,23 @@
     .back:hover{
         background-color:#65bbcc;
     }
+    @media (max-width: 768px) {
+    h1 {
+        font-size: 24px;
+        margin: 15px 0;
+    }
+
+    li {
+        font-size: 20px;
+        margin: 5px;
+        padding: 8px; /* Adjust padding for smaller screens */
+    }
+
+    .button {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
 </style>
 
 {% endblock %}
@@ -63,18 +80,18 @@
 {% block body %}
 
 <h1>My Posts</h1>
-<button type="button" class="back" onclick="location.href='/home'">Home</button>
+<button type="button" class="button back" onclick="location.href='/home'">Home</button>
 
 <ul>
     {% for post in posts %}
     <li style="display: flex;justify-content: space-between;">{{post.title}}
         <section>
-            <button type="button" class="back" onclick="location.href='/edit_post/{{post.id}}'">Edit</button><button type="button" class="delete" onclick="location.href='/delete_post/{{post.id}}'">Delete</button>
+            <button type="button" class="button back" onclick="location.href='/edit_post/{{post.id}}'">Edit</button><button type="button" class="button delete" onclick="location.href='/delete_post/{{post.id}}'">Delete</button>
         </section>
         </li>
         
     {% empty %}
-    <li style="display: flex;justify-content: space-between;">No posts yet? Create one now <button type="button" class="back" onclick="location.href='/new_post'">New Post</button></li>
+    <li style="display: flex;justify-content: space-between;">No posts yet? Create one now <button type="button" class="button back" onclick="location.href='/new_post'">New Post</button></li>
     {% endfor %}
 </ul>
 
