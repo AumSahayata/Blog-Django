@@ -8,6 +8,10 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import Post,Comment
 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import PostSerializer
+
 # Create your views here.
 @login_required(login_url='login')
 def index(request):
@@ -118,3 +122,28 @@ def delete_post(request,post_id):
     post = Post.objects.get(id = post_id) #can use pk(primary key) on place of id
     post.delete()
     return redirect('/my_posts')
+
+
+# API Endpoints
+
+@api_view(['GET'])
+def testApi(request):
+    return Response({"Success":"Setup works"})
+
+
+@api_view(['GET'])
+def GetAllPost(request):
+    all_posts = Post.objects.all()
+    serialized_post = PostSerializer(all_posts, many=True)
+
+    return Response(serialized_post.data)
+
+@api_view(['GET','POST'])
+def CreatePost(request):
+    post = request.data
+    serialized_post = PostSerializer(data=post)
+    if(serialized_post.is_valid()):
+        serialized_post.save()
+        return Response({"Success":"Post was created successfully"},status=201)
+    else:
+        return Response(serialized_post.errors,status=400)

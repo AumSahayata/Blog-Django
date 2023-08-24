@@ -11,4 +11,8 @@ urlpatterns = [
     path("post/<int:post_id>",views.view_post,name="view_post"),
     path("edit_post/<int:post_id>",views.edit_post,name="edit_post"),
     path("delete_post/<int:post_id>",views.delete_post,name="delete_post"),
+
+    path("api/test",views.testApi),
+    path("api/get_all_post",views.GetAllPost),
+    path("api/create_post",views.CreatePost),
 ]

@@ -5,11 +5,11 @@
 {% block css %}
 
 <style>
- .box {
+.box {
     margin-top: 5%;
     text-align: center;
     width: 90%;
-    max-width: 600px; /* Adjust maximum width for responsiveness */
+    /*max-width: 600px;  Adjust maximum width for responsiveness */
     margin: 0 auto;
     padding: 20px;
     border-radius: 20px;
@@ -25,52 +25,55 @@ input {
     border-radius: 20px;
 }
 
-.submit, .back {
+.back{
     background-color: white;
-    color: #65bbcc;
-    font-size: 18px;
+    font-size: 20px;
     font-family: sans-serif;
     margin-top: 15px;
-    width: 100%;
-    padding: 10px;
-    border: 2px solid #65bbcc;
+    outline: solid 2px #65bbcc;
+    display: inline;
+    width: 100px;
+    padding: 5px;
+    height: 40px;
+    border: none;
+    margin: 10px;
     border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
 }
 
-.submit:hover, .back:hover {
-    background-color: #65bbcc;
-    color: white;
+.submit{
+    background-color: white;
+    font-size: 25px;
+    font-family: sans-serif;
+    margin-top: 15px;
+    outline: solid 2px #65bbcc;
+    display: inline;
+    width: 200px;
+    height: 40px;
 }
 
-.type {
-    font-size: 16px;
+.submit:hover{
+    background-color:#65bbcc;
+}
+.type{
+    font-size: 20px;
     outline: solid 2px #65cca9;
     font-family: sans-serif;
-    width: 100%;
-    padding: 5px;
-    border-radius: 20px;
-    transition: border 0.3s;
+    display: inline;
 }
-
-.type:hover, .type:focus {
-    border: solid 2px #65cca9;
+.type:hover{
+    border: solid 4px #65cca9;
+}
+.type:focus {
+    border: solid 4px #65cca9;
     outline: none;
+}
+.back:hover{
+    background-color:#65bbcc;
 }
 
 h2 {
     font-family: sans-serif;
     font-size: 24px;
-}
-
-.text-area {
-    border-radius: 20px;
-    outline: none;
-    border: none;
-    border-collapse: collapse;
-    width: 100%;
-    padding: 10px;
 }
 
 /* Media query for mobile devices */
@@ -121,7 +124,7 @@ h2 {
         by {{post.username}}, {{post.date}}
     </div>
 </div>
-<div style="display: flex; justify-content: end; margin-top: 100px; margin-right: 100px;">
+<div style="display: flex; justify-content: space-evenly; margin-top: 100px; margin-right: 250px;">
     <button type="button" class="back" onclick="location.href='/home'">Back</button>
     <form action="" method="post">
         {% csrf_token %}
